@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - /Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/GardenCentreApp.app/libmonosgen-2.0.dylib

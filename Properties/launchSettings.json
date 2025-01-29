@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    },
+    "Android": {
+      "commandName": "Project",
+      "framework": "net8.0-android"
+    },
+    "iOS": {
+      "commandName": "Project",
+      "framework": "net8.0-ios"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/mcfeely/Projects/GardenCentreApp/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/GardenCentreApp.app
