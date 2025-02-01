@@ -90,19 +90,33 @@ public partial class PlantProducts : ContentPage
         }
     }
 
-    private async void OnAddToCartClicked(object sender, EventArgs e)
+private async void OnAddToCartClicked(object sender, EventArgs e)
+{
+    try 
     {
-        var button = sender as Button;
-        var productName = button.CommandParameter.ToString();
-        var quantity = int.Parse(this.FindByName<Label>($"{productName}Quantity").Text);
-
-        if (quantity > 0)
+        if (sender is Button button)
         {
-            await DisplayAlert("Added to Cart",
-                $"Added {quantity} {productName} Plant(s) to your cart", "OK");
-            // Add to cart logic here
+            var productName = button.CommandParameter?.ToString();
+            if (!string.IsNullOrEmpty(productName))
+            {
+                var quantityLabel = this.FindByName<Label>($"{productName}Quantity");
+                if (quantityLabel != null)
+                {
+                    int quantity = int.Parse(quantityLabel.Text);
+                    if (quantity > 0)
+                    {
+                        await DisplayAlert("Added to Cart", 
+                            $"Added {quantity} {productName}(s) to your cart", "OK");
+                    }
+                }
+            }
         }
     }
+    catch (Exception ex)
+    {
+        await DisplayAlert("Error", "Failed to add item to cart", "OK");
+    }
+}
 
     private async void OnCartClicked(object sender, EventArgs e)
     {

@@ -93,22 +93,29 @@ public partial class ToolProducts : ContentPage
 
     private async void OnAddToCartClicked(object sender, EventArgs e)
     {
-        if (sender is Button button)
+        try
         {
-            var productName = button.CommandParameter?.ToString();
-            if (productName != null)
+            if (sender is Button button)
             {
-                var quantityLabel = this.FindByName<Label>($"{productName}Quantity");
-                if (quantityLabel != null)
+                var productName = button.CommandParameter?.ToString();
+                if (!string.IsNullOrEmpty(productName))
                 {
-                    int quantity = int.Parse(quantityLabel.Text);
-                    if (quantity > 0)
+                    var quantityLabel = this.FindByName<Label>($"{productName}Quantity");
+                    if (quantityLabel != null)
                     {
-                        await DisplayAlert("Added to Cart",
-                            $"Added {quantity} {productName}(s) to your cart", "OK");
+                        int quantity = int.Parse(quantityLabel.Text);
+                        if (quantity > 0)
+                        {
+                            await DisplayAlert("Added to Cart",
+                                $"Added {quantity} {productName}(s) to your cart", "OK");
+                        }
                     }
                 }
             }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", "Failed to add item to cart", "OK");
         }
     }
 
