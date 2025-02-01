@@ -49,6 +49,10 @@
 /Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/Microsoft.Maui.dll
 /Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/Microsoft.Maui.Essentials.dll
 /Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/Microsoft.Maui.Graphics.dll
+/Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/SQLite-net.dll
+/Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/SQLitePCLRaw.batteries_v2.dll
+/Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/SQLitePCLRaw.core.dll
+/Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/SQLitePCLRaw.provider.sqlite3.dll
 /Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/GardenCentreApp.dll
 /Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/Microsoft.CSharp.dll
 /Users/mcfeely/Projects/GardenCentreApp/bin/Debug/net8.0-ios/iossimulator-arm64/publish/../GardenCentreApp.app/Microsoft.VisualBasic.Core.dll

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GardenCentreApp.SignUpPage"
+             Title="Sign Up to Portmarnock Garden Centre"
+             BackgroundColor="#C8E6C9">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20"
+                             Padding="20"
+                             VerticalOptions="Start">
+
+            <Grid VerticalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0"
+                       Source="text.png"
+                       HeightRequest="150"
+                       Margin="0,40,0,0"
+                       Aspect="AspectFit"
+                       SemanticProperties.Description="Garden Centre Text"/>
+
+                <Image Grid.Row="1"
+                       Source="dotnet_bot.png"
+                       HeightRequest="150"
+                       Margin="0,-50,0,0"
+                       Aspect="AspectFit"
+                       SemanticProperties.Description="Garden Centre Logo"/>
+            </Grid>
+
+            <Entry
+                Placeholder="Full Name"
+                x:Name="NameEntry"
+                BackgroundColor="White"
+                WidthRequest="300"
+                HorizontalOptions="Center"/>
+
+            <Entry
+                Placeholder="Email"
+                Keyboard="Email"
+                x:Name="EmailEntry"
+                BackgroundColor="White"
+                WidthRequest="300"
+                HorizontalOptions="Center"/>
+
+            <Entry
+                Placeholder="Phone Number"
+                Keyboard="Telephone"
+                x:Name="PhoneEntry"
+                BackgroundColor="White"
+                WidthRequest="300"
+                HorizontalOptions="Center"/>
+
+            <!-- Corporate Account Checkbox -->
+            <HorizontalStackLayout
+                Spacing="10"
+                HorizontalOptions="Center">
+                <CheckBox
+                    x:Name="CorporateCheckbox"
+                    Color="#FF02653F"/>
+                <Label
+                    Text="Corporate Account"
+                    VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <!-- Corporate Fields (only visible when checkbox is checked) -->
+            <VerticalStackLayout
+                x:Name="CorporateFields"
+                IsVisible="{Binding Source={x:Reference CorporateCheckbox}, Path=IsChecked}"
+                Spacing="20">
+                <Entry
+                    Placeholder="Company Name"
+                    x:Name="CompanyEntry"
+                    BackgroundColor="White"
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+            <Button
+                Text="Sign Up"
+                x:Name="SignUpButton"
+                BackgroundColor="#FF02653F"
+                TextColor="White"
+                WidthRequest="200"
+                Margin="0,20,0,0"
+                HorizontalOptions="Center"/>
+
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                Spacing="5">
+                <Label
+                    Text="Already have an account?"
+                    VerticalOptions="Center"/>
+                <Label
+                    Text="Login"
+                    TextColor="#FF04783A"
+                    TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="LoginTap"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

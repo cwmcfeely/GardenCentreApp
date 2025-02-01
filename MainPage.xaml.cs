@@ -1,24 +1,36 @@
 ﻿namespace GardenCentreApp;
-
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
 	public MainPage()
 	{
 		InitializeComponent();
+		LoginButton.Clicked += OnLoginClicked;
+		SignUpTap.Tapped += OnSignUpTapped;
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	private async void OnSignUpTapped(object sender, EventArgs e)
 	{
-		count++;
+		await Navigation.PushAsync(new SignUpPage());
+	}
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
+	private async void OnLoginClicked(object sender, EventArgs e)
+	{
+		if (string.IsNullOrEmpty(EmailEntry.Text) ||
+			string.IsNullOrEmpty(PasswordEntry.Text))
+		{
+			await DisplayAlert("Error", "Please enter both email and phone number", "OK");
+			return;
+		}
+
+		var user = await App.Database.GetUserAsync(EmailEntry.Text, PasswordEntry.Text);
+		if (user != null)
+		{
+			await DisplayAlert("Success", "Login successful!", "OK");
+			// Add navigation to your shopping page here
+		}
 		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+		{
+			await DisplayAlert("Error", "Invalid email or phone number", "OK");
+		}
 	}
 }
-
