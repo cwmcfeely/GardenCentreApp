@@ -8,6 +8,7 @@ public partial class ToolProducts : ContentPage
     public ToolProducts()
     {
         InitializeComponent();
+        products = new Dictionary<string, (int, decimal)>(); // Initialize empty dictionary
         InitializeProducts();
     }
 
@@ -23,7 +24,7 @@ public partial class ToolProducts : ContentPage
         };
     }
 
-    private void OnIncrementClicked(object sender, EventArgs e)
+    private void OnIncrementClicked(object? sender, EventArgs e)
     {
         if (sender is Button button)
         {
@@ -41,7 +42,7 @@ public partial class ToolProducts : ContentPage
         }
     }
 
-    private void OnDecrementClicked(object sender, EventArgs e)
+    private void OnDecrementClicked(object? sender, EventArgs e)
     {
         if (sender is Button button)
         {
@@ -91,7 +92,7 @@ public partial class ToolProducts : ContentPage
         }
     }
 
-    private async void OnAddToCartClicked(object sender, EventArgs e)
+    private async void OnAddToCartClicked(object? sender, EventArgs e)
     {
         try
         {
@@ -121,14 +122,13 @@ public partial class ToolProducts : ContentPage
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             await DisplayAlert("Error", "Failed to add item to cart", "OK");
         }
     }
 
-
-    private async void OnCartClicked(object sender, EventArgs e)
+    private async void OnCartClicked(object? sender, EventArgs e)
     {
         if (isCartOpening) return;
 

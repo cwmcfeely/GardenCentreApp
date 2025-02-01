@@ -8,12 +8,12 @@ public partial class MainPage : ContentPage
 		SignUpTap.Tapped += OnSignUpTapped;
 	}
 
-	private async void OnSignUpTapped(object sender, EventArgs e)
+	private async void OnSignUpTapped(object? sender, EventArgs e)
 	{
 		await Navigation.PushAsync(new SignUpPage());
 	}
 
-	private async void OnLoginClicked(object sender, EventArgs e)
+	private async void OnLoginClicked(object? sender, EventArgs e)
 	{
 		if (string.IsNullOrEmpty(EmailEntry.Text) ||
 			string.IsNullOrEmpty(PasswordEntry.Text))
@@ -27,6 +27,7 @@ public partial class MainPage : ContentPage
 		{
 			//await DisplayAlert("Success", "Login successful!", "OK");
 			// Navigate to CategoriesPage with user's name
+			var userName = user.UserName ?? string.Empty;
 			await Navigation.PushAsync(new CategoriesPage(user.UserName));
 
 			// Clear entry fields after successful login

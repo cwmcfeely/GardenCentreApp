@@ -97,7 +97,7 @@ public partial class ShoppingCart : ContentPage
         TotalLabel.Text = $"Total: €{totalAmount:F2}";
     }
 
-    private async void OnCheckoutClicked(object sender, EventArgs e)
+    private async void OnCheckoutClicked(object? sender, EventArgs e)
     {
         var summary = "Purchase Summary:\n\n";
         foreach (var item in CartItems)
@@ -115,7 +115,7 @@ public partial class ShoppingCart : ContentPage
 
     private bool isLoggingOut = false;
 
-    private async void OnLogoutClicked(object sender, EventArgs e)
+    private async void OnLogoutClicked(object? sender, EventArgs e)
     {
         if (isLoggingOut) return;
 

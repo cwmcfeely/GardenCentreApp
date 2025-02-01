@@ -10,7 +10,7 @@ public partial class CategoriesPage : ContentPage
         LogoutButton.Clicked += OnLogoutClicked;
     }
 
-    private async void OnCategoryTapped(object sender, EventArgs e)
+    private async void OnCategoryTapped(object? sender, EventArgs e)
     {
         if (sender is Frame frame)
         {
@@ -39,7 +39,7 @@ public partial class CategoriesPage : ContentPage
 
     private bool isCartOpening = false;
 
-    private async void OnCartClicked(object sender, EventArgs e)
+    private async void OnCartClicked(object? sender, EventArgs e)
     {
         if (isCartOpening) return;
 
@@ -56,7 +56,7 @@ public partial class CategoriesPage : ContentPage
 
     private bool isLoggingOut = false;
 
-    private async void OnLogoutClicked(object sender, EventArgs e)
+    private async void OnLogoutClicked(object? sender, EventArgs e)
     {
         if (isLoggingOut) return;
 
