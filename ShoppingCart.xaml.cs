@@ -122,7 +122,8 @@ public partial class ShoppingCart : ContentPage
             CartItems.Remove(item);
         }
 
-        await Navigation.PopToRootAsync();
+        // Navigate back to previous page instead of root
+        await Navigation.PopAsync();
     }
 
     private bool isLoggingOut = false;
