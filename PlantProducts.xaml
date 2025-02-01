@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GardenCentreApp.PlantProducts"
+             Title="Plants"
+             BackgroundColor="#C8E6C9">
+
+    <Grid RowSpacing="20"
+          Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Cart Button -->
+        <ImageButton
+            Grid.Row="0"
+            x:Name="CartButton"
+            Source="cart.png"
+            HeightRequest="30"
+            WidthRequest="30"
+            HorizontalOptions="End"
+            Margin="0,0,10,0"
+            Clicked="OnCartClicked"/>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="20">
+                <!-- Succulent Plant -->
+                <Frame BackgroundColor="White"
+                       Padding="15"
+                       CornerRadius="10">
+                    <Grid RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Source="succulent_plant.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFit"/>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="15,0,0,0">
+                            <Label Text="Succulent Plant"
+                                   FontSize="24"
+                                   TextColor="#047B4D"/>
+                            <Label Text="Low maintenance, drought-resistant succulent"
+                                   FontSize="14"/>
+                            <Label x:Name="SucculentPrice"
+                                   Text="€15.99 each"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.ColumnSpan="2"
+                              Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0"
+                                         Orientation="Horizontal"
+                                         Spacing="10">
+                                <Button Text="-"
+                                        x:Name="SucculentMinus"
+                                        Clicked="OnDecrementClicked"
+                                        WidthRequest="40"/>
+                                <Label x:Name="SucculentQuantity"
+                                       Text="0"
+                                       VerticalOptions="Center"/>
+                                <Button Text="+"
+                                        x:Name="SucculentPlus"
+                                        Clicked="OnIncrementClicked"
+                                        WidthRequest="40"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="Add to Cart"
+                                    x:Name="SucculentAddToCart"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#047B4D"
+                                    TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <!-- Euclidean Plant -->
+                <Frame BackgroundColor="White"
+                       Padding="15"
+                       CornerRadius="10">
+                    <Grid RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Source="euclidean_plant.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFit"/>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="15,0,0,0">
+                            <Label Text="Euclidean Plant"
+                                   FontSize="24"
+                                   TextColor="#047B4D"/>
+                            <Label Text="Plant that grows in a spiral pattern"
+                                   FontSize="14"/>
+                            <Label x:Name="EuclideanPrice"
+                                   Text="€17.99 each"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.ColumnSpan="2"
+                              Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0"
+                                         Orientation="Horizontal"
+                                         Spacing="10">
+                                <Button Text="-"
+                                        x:Name="EuclideanMinus"
+                                        Clicked="OnDecrementClicked"
+                                        WidthRequest="40"/>
+                                <Label x:Name="EuclideanQuantity"
+                                       Text="0"
+                                       VerticalOptions="Center"/>
+                                <Button Text="+"
+                                        x:Name="EuclideanPlus"
+                                        Clicked="OnIncrementClicked"
+                                        WidthRequest="40"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="Add to Cart"
+                                    x:Name="EuclideanAddToCart"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#047B4D"
+                                    TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <!-- Violet Plant -->
+                <Frame BackgroundColor="White"
+                       Padding="15"
+                       CornerRadius="10">
+                    <Grid RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Source="violet_plant.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFit"/>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="15,0,0,0">
+                            <Label Text="Violet Plant"
+                                   FontSize="24"
+                                   TextColor="#047B4D"/>
+                            <Label Text="Potted plant with violet flowers"
+                                   FontSize="14"/>
+                            <Label x:Name="VioletPrice"
+                                   Text="€9.99 each"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.ColumnSpan="2"
+                              Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0"
+                                         Orientation="Horizontal"
+                                         Spacing="10">
+                                <Button Text="-"
+                                        x:Name="VioletMinus"
+                                        Clicked="OnDecrementClicked"
+                                        WidthRequest="40"/>
+                                <Label x:Name="VioletQuantity"
+                                       Text="0"
+                                       VerticalOptions="Center"/>
+                                <Button Text="+"
+                                        x:Name="VioletPlus"
+                                        Clicked="OnIncrementClicked"
+                                        WidthRequest="40"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="Add to Cart"
+                                    x:Name="VioletAddToCart"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#047B4D"
+                                    TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <!-- Yucca Plant -->
+                <Frame BackgroundColor="White"
+                       Padding="15"
+                       CornerRadius="10">
+                    <Grid RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Source="yucca_plant.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFit"/>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="15,0,0,0">
+                            <Label Text="Yucca Plant"
+                                   FontSize="24"
+                                   TextColor="#047B4D"/>
+                            <Label Text="Hardy evergreen plant with sword like leaves"
+                                   FontSize="14"/>
+                            <Label x:Name="YuccaPrice"
+                                   Text="€7.99 each"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.ColumnSpan="2"
+                              Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0"
+                                         Orientation="Horizontal"
+                                         Spacing="10">
+                                <Button Text="-"
+                                        x:Name="YuccaMinus"
+                                        Clicked="OnDecrementClicked"
+                                        WidthRequest="40"/>
+                                <Label x:Name="YuccaQuantity"
+                                       Text="0"
+                                       VerticalOptions="Center"/>
+                                <Button Text="+"
+                                        x:Name="YuccaPlus"
+                                        Clicked="OnIncrementClicked"
+                                        WidthRequest="40"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="Add to Cart"
+                                    x:Name="YuccaAddToCart"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#047B4D"
+                                    TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <!-- Petunia Plant -->
+                <Frame BackgroundColor="White"
+                       Padding="15"
+                       CornerRadius="10">
+                    <Grid RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Source="petunia_plant.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFit"/>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="15,0,0,0">
+                            <Label Text="Petunia Plant"
+                                   FontSize="24"
+                                   TextColor="#047B4D"/>
+                            <Label Text="Petunia plant with pink flowers"
+                                   FontSize="14"/>
+                            <Label x:Name="PetuniaPrice"
+                                   Text="€9.99 each"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.ColumnSpan="2"
+                              Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0"
+                                         Orientation="Horizontal"
+                                         Spacing="10">
+                                <Button Text="-"
+                                        x:Name="PetuniaMinus"
+                                        Clicked="OnDecrementClicked"
+                                        WidthRequest="40"/>
+                                <Label x:Name="PetuniaQuantity"
+                                       Text="0"
+                                       VerticalOptions="Center"/>
+                                <Button Text="+"
+                                        x:Name="PetuniaPlus"
+                                        Clicked="OnIncrementClicked"
+                                        WidthRequest="40"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="Add to Cart"
+                                    x:Name="PetuniaAddToCart"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#047B4D"
+                                    TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

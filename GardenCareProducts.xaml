@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GardenCentreApp.GardenCareProducts"
+             Title="Tools"
+             BackgroundColor="#C8E6C9">
+
+    <Grid RowSpacing="20"
+          Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Cart Button -->
+        <ImageButton
+            Grid.Row="0"
+            x:Name="CartButton"
+            Source="cart.png"
+            HeightRequest="30"
+            WidthRequest="30"
+            HorizontalOptions="End"
+            Margin="0,0,10,0"
+            Clicked="OnCartClicked"/>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="20">
+                <!-- Garden Soil -->
+                <Frame BackgroundColor="White"
+                       Padding="15"
+                       CornerRadius="10">
+                    <Grid RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Source="garden_soil.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFit"/>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="15,0,0,0">
+                            <Label Text="Garden Soil"
+                                   FontSize="24"
+                                   TextColor="#047B4D"/>
+                            <Label Text="Garden soil for planting flowers."
+                                   FontSize="14"/>
+                            <Label x:Name="GardenSoilPrice"
+                                   Text="9.99 each"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.ColumnSpan="2"
+                              Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0"
+                                         Orientation="Horizontal"
+                                         Spacing="10">
+                                <Button Text="-"
+                                        x:Name="GardenSoilMinus"
+                                        Clicked="OnDecrementClicked"
+                                        WidthRequest="40"/>
+                                <Label x:Name="GardenSoilQuantity"
+                                       Text="0"
+                                       VerticalOptions="Center"/>
+                                <Button Text="+"
+                                        x:Name="GardenSoilPlus"
+                                        Clicked="OnIncrementClicked"
+                                        WidthRequest="40"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="Add to Cart"
+                                    x:Name="GardenSoilAddToCart"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#047B4D"
+                                    TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <!-- Fertiliser -->
+                <Frame BackgroundColor="White"
+                       Padding="15"
+                       CornerRadius="10">
+                    <Grid RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Source="handtools.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFit"/>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="15,0,0,0">
+                            <Label Text="Fertiliser"
+                                   FontSize="24"
+                                   TextColor="#047B4D"/>
+                            <Label Text="Fertiliser for plant nutrion."
+                                   FontSize="14"/>
+                            <Label x:Name="FertiliserPrice"
+                                   Text="€17.99 each"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.ColumnSpan="2"
+                              Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0"
+                                         Orientation="Horizontal"
+                                         Spacing="10">
+                                <Button Text="-"
+                                        x:Name="FertiliserMinus"
+                                        Clicked="OnDecrementClicked"
+                                        WidthRequest="40"/>
+                                <Label x:Name="FertiliserQuantity"
+                                       Text="0"
+                                       VerticalOptions="Center"/>
+                                <Button Text="+"
+                                        x:Name="FertiliserPlus"
+                                        Clicked="OnIncrementClicked"
+                                        WidthRequest="40"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="Add to Cart"
+                                    x:Name="FertiliserAddToCart"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#047B4D"
+                                    TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <!-- Weed Killer -->
+                <Frame BackgroundColor="White"
+                       Padding="15"
+                       CornerRadius="10">
+                    <Grid RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="0"
+                               Source="weed_killer.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFit"/>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="15,0,0,0">
+                            <Label Text="Weed Killer"
+                                   FontSize="24"
+                                   TextColor="#047B4D"/>
+                            <Label Text="Weed Killer for garden maintenance."
+                                   FontSize="14"/>
+                            <Label x:Name="WeedKillerPrice"
+                                   Text="€29.99 each"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+
+                        <Grid Grid.ColumnSpan="2"
+                              Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0"
+                                         Orientation="Horizontal"
+                                         Spacing="10">
+                                <Button Text="-"
+                                        x:Name="WeedKillerMinus"
+                                        Clicked="OnDecrementClicked"
+                                        WidthRequest="40"/>
+                                <Label x:Name="GWeedKillerQuantity"
+                                       Text="0"
+                                       VerticalOptions="Center"/>
+                                <Button Text="+"
+                                        x:Name="WeedKillerPlus"
+                                        Clicked="OnIncrementClicked"
+                                        WidthRequest="40"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2"
+                                    Text="Add to Cart"
+                                    x:Name="WeedKillerddToCart"
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#047B4D"
+                                    TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

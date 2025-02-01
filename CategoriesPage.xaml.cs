@@ -8,30 +8,40 @@ public partial class CategoriesPage : ContentPage
         WelcomeLabel.Text = $"Welcome {userName}, choose a shopping category";
         CartButton.Clicked += OnCartClicked;
         LogoutButton.Clicked += OnLogoutClicked;
-        PlantsCategory.Tapped += OnCategoryTapped;
-        ToolsCategory.Tapped += OnCategoryTapped;
-        GardenCareCategory.Tapped += OnCategoryTapped;
     }
 
-    private async void OnCategoryTapped(object sender, TappedEventArgs e)
+    private async void OnCategoryTapped(object sender, EventArgs e)
     {
-        if (sender is TapGestureRecognizer tap)
+        if (sender is Frame frame)
         {
-            var frame = tap.Parent as Frame;
             var grid = frame.Content as Grid;
-            var stack = grid.Children[1] as VerticalStackLayout;
-            var categoryLabel = stack.Children[0] as Label;
+            var stack = grid?.Children[1] as VerticalStackLayout;
+            var categoryLabel = stack?.Children[0] as Label;
 
-            string categoryName = categoryLabel.Text;
-            await DisplayAlert("Category Selected", $"You selected {categoryName}", "OK");
+            if (categoryLabel?.Text == "Plants")
+            {
+                await Navigation.PushAsync(new PlantProducts());
+            }
+            else if (categoryLabel?.Text == "Tools")
+            {
+                await Navigation.PushAsync(new ToolProducts());
+            }
+            else if (categoryLabel?.Text == "GardenCare")
+            {
+                await Navigation.PushAsync(new GardenCareProducts());
+            }
+            else
+            {
+                await DisplayAlert("Coming Soon", $"{categoryLabel?.Text} page is not yet implemented.", "OK");
+            }
         }
     }
 
-    private bool isCartOpening = false;  // Add this field at class level
+    private bool isCartOpening = false;
 
     private async void OnCartClicked(object sender, EventArgs e)
     {
-        if (isCartOpening) return;  // Prevent multiple executions
+        if (isCartOpening) return;
 
         isCartOpening = true;
         try
@@ -40,15 +50,15 @@ public partial class CategoriesPage : ContentPage
         }
         finally
         {
-            isCartOpening = false;  // Reset the flag
+            isCartOpening = false;
         }
     }
 
-    private bool isLoggingOut = false;  // Add this field at class level
+    private bool isLoggingOut = false;
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        if (isLoggingOut) return;  // Prevent multiple executions
+        if (isLoggingOut) return;
 
         isLoggingOut = true;
         try
@@ -61,13 +71,8 @@ public partial class CategoriesPage : ContentPage
         }
         finally
         {
-            isLoggingOut = false;  // Reset the flag
+            isLoggingOut = false;
         }
     }
 
-
-    protected override bool OnBackButtonPressed()
-    {
-        return true;
-    }
 }

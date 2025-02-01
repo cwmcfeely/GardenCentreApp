@@ -21,7 +21,7 @@ public partial class App : Application
 		InitializeComponent();
 		MainPage = new NavigationPage(new MainPage())
 		{
-			BarBackgroundColor = Color.FromArgb("#FF02653F"),
+			BarBackgroundColor = Color.FromArgb("#047B4D"),
 			BarTextColor = Colors.White
 		};
 	}

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GardenCentreApp.CategoriesPage"
              Title="Garden Shopping Categories"
+             NavigationPage.HasBackButton="False"
              BackgroundColor="#C8E6C9">
 
     <Grid RowSpacing="20"
@@ -31,8 +32,8 @@
                 Grid.Column="1"
                 x:Name="CartButton"
                 Source="cart.png"
-                HeightRequest="30"
-                WidthRequest="30"
+                HeightRequest="40"
+                WidthRequest="40"
                 Margin="0,20,10,20"
                 Clicked="OnCartClicked"/>
         </Grid>
@@ -44,6 +45,9 @@
             <Frame BackgroundColor="White"
                    Padding="15"
                    CornerRadius="10">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCategoryTapped"/>
+                </Frame.GestureRecognizers>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -63,15 +67,6 @@
                         <Label Text="Browse our selection of indoor and outdoor plants"
                                FontSize="14"/>
                     </VerticalStackLayout>
-
-                    <BoxView Grid.ColumnSpan="2"
-                             BackgroundColor="Transparent"
-                             InputTransparent="False">
-                        <BoxView.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="PlantsCategory"
-                                                  Tapped="OnCategoryTapped"/>
-                        </BoxView.GestureRecognizers>
-                    </BoxView>
                 </Grid>
             </Frame>
 
@@ -79,6 +74,9 @@
             <Frame BackgroundColor="White"
                    Padding="15"
                    CornerRadius="10">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCategoryTapped"/>
+                </Frame.GestureRecognizers>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -95,18 +93,9 @@
                         <Label Text="Tools"
                                FontSize="24"
                                TextColor="#047B4D"/>
-                        <Label Text="Quality gardening tools and equipment"
+                        <Label Text="Quality tools for all your gardening needs"
                                FontSize="14"/>
                     </VerticalStackLayout>
-
-                    <BoxView Grid.ColumnSpan="2"
-                             BackgroundColor="Transparent"
-                             InputTransparent="False">
-                        <BoxView.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="ToolsCategory"
-                                                  Tapped="OnCategoryTapped"/>
-                        </BoxView.GestureRecognizers>
-                    </BoxView>
                 </Grid>
             </Frame>
 
@@ -114,6 +103,9 @@
             <Frame BackgroundColor="White"
                    Padding="15"
                    CornerRadius="10">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCategoryTapped"/>
+                </Frame.GestureRecognizers>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -127,21 +119,12 @@
 
                     <VerticalStackLayout Grid.Column="1"
                                          Padding="15,0,0,0">
-                        <Label Text="Garden Care"
+                        <Label Text="Tools"
                                FontSize="24"
                                TextColor="#047B4D"/>
-                        <Label Text="Fertilisers, soil, and garden maintenance products"
+                        <Label Text="Fertilizers, soils, and weed killer"
                                FontSize="14"/>
                     </VerticalStackLayout>
-
-                    <BoxView Grid.ColumnSpan="2"
-                             BackgroundColor="Transparent"
-                             InputTransparent="False">
-                        <BoxView.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="GardenCareCategory"
-                                                  Tapped="OnCategoryTapped"/>
-                        </BoxView.GestureRecognizers>
-                    </BoxView>
                 </Grid>
             </Frame>
         </VerticalStackLayout>
