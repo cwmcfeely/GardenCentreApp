@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GardenCentreApp.ShoppingCart"
+             Title="Shopping Cart"
+             BackgroundColor="#C8E6C9">
+
+    <Grid RowSpacing="20"
+            Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Bar with Logout -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="1"
+                Text="Logout"
+                x:Name="LogoutButton"
+                BackgroundColor="#047B4D"
+                TextColor="White"
+                Clicked="OnLogoutClicked"
+                HeightRequest="40"
+                Margin="0,0,0,10"/>
+        </Grid>
+
+        <!-- Cart Items -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout x:Name="CartItemsLayout"
+                                 Spacing="15">
+                <!-- Cart items will be added here dynamically -->
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Total and Checkout -->
+        <VerticalStackLayout Grid.Row="2"
+                             Spacing="15">
+            <Label x:Name="TotalLabel"
+                   Text="Total: €0.00"
+                   FontSize="24"
+                   TextColor="#047B4D"
+                   HorizontalOptions="End"/>
+
+            <Button Text="Checkout"
+                    x:Name="CheckoutButton"
+                    BackgroundColor="#047B4D"
+                    TextColor="White"
+                    Clicked="OnCheckoutClicked"
+                    IsEnabled="False"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -25,7 +25,7 @@ public partial class MainPage : ContentPage
 		var user = await App.Database.GetUserAsync(EmailEntry.Text, PasswordEntry.Text);
 		if (user != null)
 		{
-			await DisplayAlert("Success", "Login successful!", "OK");
+			//await DisplayAlert("Success", "Login successful!", "OK");
 			// Navigate to CategoriesPage with user's name
 			await Navigation.PushAsync(new CategoriesPage(user.UserName));
 

@@ -26,13 +26,13 @@ public partial class CategoriesPage : ContentPage
             {
                 await Navigation.PushAsync(new ToolProducts());
             }
-            else if (categoryLabel?.Text == "GardenCare")
+            else if (categoryLabel?.Text == "Garden Care")  // Add space between Garden and Care
             {
                 await Navigation.PushAsync(new GardenCareProducts());
             }
             else
             {
-                await DisplayAlert("Coming Soon", $"{categoryLabel?.Text} page is not yet implemented.", "OK");
+                await DisplayAlert("Error", "Invalid category", "OK");
             }
         }
     }
@@ -46,7 +46,7 @@ public partial class CategoriesPage : ContentPage
         isCartOpening = true;
         try
         {
-            await DisplayAlert("Cart", "Shopping Cart clicked", "OK");
+            await Navigation.PushAsync(new ShoppingCart());
         }
         finally
         {

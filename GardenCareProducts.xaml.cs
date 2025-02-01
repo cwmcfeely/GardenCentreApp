@@ -89,33 +89,42 @@ public partial class GardenCareProducts : ContentPage
         }
     }
 
-private async void OnAddToCartClicked(object sender, EventArgs e)
-{
-    try 
+    private async void OnAddToCartClicked(object sender, EventArgs e)
     {
-        if (sender is Button button)
+        try
         {
-            var productName = button.CommandParameter?.ToString();
-            if (!string.IsNullOrEmpty(productName))
+            if (sender is Button button)
             {
-                var quantityLabel = this.FindByName<Label>($"{productName}Quantity");
-                if (quantityLabel != null)
+                var productName = button.CommandParameter?.ToString();
+                if (!string.IsNullOrEmpty(productName))
                 {
-                    int quantity = int.Parse(quantityLabel.Text);
-                    if (quantity > 0)
+                    var quantityLabel = this.FindByName<Label>($"{productName}Quantity");
+                    if (quantityLabel != null)
                     {
-                        await DisplayAlert("Added to Cart", 
-                            $"Added {quantity} {productName}(s) to your cart", "OK");
+                        int quantity = int.Parse(quantityLabel.Text);
+                        if (quantity > 0)
+                        {
+                            var price = products[productName].Price;
+                            ShoppingCart.CartItems.Add(new CartItem
+                            {
+                                ProductName = productName,
+                                Quantity = quantity,
+                                Price = price
+                            });
+
+                            await DisplayAlert("Added to Cart",
+                                $"Added {quantity} {productName}(s) to your cart", "OK");
+                        }
                     }
                 }
             }
         }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", "Failed to add item to cart", "OK");
+        }
     }
-    catch (Exception ex)
-    {
-        await DisplayAlert("Error", "Failed to add item to cart", "OK");
-    }
-}
+
 
     private async void OnCartClicked(object sender, EventArgs e)
     {
@@ -124,7 +133,7 @@ private async void OnAddToCartClicked(object sender, EventArgs e)
         isCartOpening = true;
         try
         {
-            await DisplayAlert("Cart", "Shopping Cart clicked", "OK");
+            await Navigation.PushAsync(new ShoppingCart());
         }
         finally
         {

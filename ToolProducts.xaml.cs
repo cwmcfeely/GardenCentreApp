@@ -106,6 +106,14 @@ public partial class ToolProducts : ContentPage
                         int quantity = int.Parse(quantityLabel.Text);
                         if (quantity > 0)
                         {
+                            var price = products[productName].Price;
+                            ShoppingCart.CartItems.Add(new CartItem
+                            {
+                                ProductName = productName,
+                                Quantity = quantity,
+                                Price = price
+                            });
+
                             await DisplayAlert("Added to Cart",
                                 $"Added {quantity} {productName}(s) to your cart", "OK");
                         }
@@ -119,6 +127,7 @@ public partial class ToolProducts : ContentPage
         }
     }
 
+
     private async void OnCartClicked(object sender, EventArgs e)
     {
         if (isCartOpening) return;
@@ -126,7 +135,7 @@ public partial class ToolProducts : ContentPage
         isCartOpening = true;
         try
         {
-            await DisplayAlert("Cart", "Shopping Cart clicked", "OK");
+            await Navigation.PushAsync(new ShoppingCart());
         }
         finally
         {

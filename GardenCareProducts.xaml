@@ -212,7 +212,7 @@
                                         x:Name="WeedKillerMinus"
                                         Clicked="OnDecrementClicked"
                                         WidthRequest="40"/>
-                                <Label x:Name="GWeedKillerQuantity"
+                                <Label x:Name="WeedKillerQuantity"
                                        Text="0"
                                        VerticalOptions="Center"/>
                                 <Button Text="+"
@@ -223,7 +223,7 @@
 
                             <Button Grid.Column="2"
                                     Text="Add to Cart"
-                                    x:Name="WeedKillerddToCart"
+                                    x:Name="WeedKillerdToCart"
                                     CommandParameter="WeedKiller"
                                     Clicked="OnAddToCartClicked"
                                     BackgroundColor="#047B4D"
