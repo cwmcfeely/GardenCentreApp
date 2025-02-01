@@ -1,7 +1,9 @@
 namespace GardenCentreApp;
 
+/// Page that handles new user registration
 public partial class SignUpPage : ContentPage
 {
+    /// Initializes a new instance of the SignUpPage, Sets up event handlers for buttons and controls
     public SignUpPage()
     {
         InitializeComponent();
@@ -10,13 +12,17 @@ public partial class SignUpPage : ContentPage
         CorporateCheckbox.CheckedChanged += OnCorporateCheckboxChanged;
     }
 
+    /// Shows or hides corporate-specific fields based on checkbox state
     private void OnCorporateCheckboxChanged(object? sender, CheckedChangedEventArgs e)
     {
         CorporateFields.IsVisible = e.Value;
     }
 
+    /// Handles the sign up process when the sign up button is clicked
+    /// Validates user input and creates new user account
     private async void OnSignUpClicked(object? sender, EventArgs e)
     {
+        // Validate required fields
         if (string.IsNullOrEmpty(NameEntry.Text) ||
             string.IsNullOrEmpty(EmailEntry.Text) ||
             string.IsNullOrEmpty(PhoneEntry.Text))
@@ -25,6 +31,7 @@ public partial class SignUpPage : ContentPage
             return;
         }
 
+        // Create new user object with form data
         var user = new User
         {
             UserName = NameEntry.Text,
@@ -35,6 +42,7 @@ public partial class SignUpPage : ContentPage
 
         try
         {
+            // Save user to database and return to login page
             await App.Database.SaveUserAsync(user);
             await DisplayAlert("Success", "Account created successfully!", "OK");
             await Navigation.PopAsync();
@@ -45,6 +53,7 @@ public partial class SignUpPage : ContentPage
         }
     }
 
+    /// Handles navigation back to login page when login text is tapped
     private async void OnLoginTapped(object? sender, EventArgs e)
     {
         await Navigation.PopAsync();

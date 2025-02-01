@@ -1,11 +1,16 @@
 namespace GardenCentreApp;
 
+/// Shopping cart page that displays and manages items added by users
 public partial class ShoppingCart : ContentPage
 {
+    /// Stores the ID of the currently logged-in user
     private readonly int currentUserID;
+    /// Static list that stores all cart items across the application
     public static List<CartItem> CartItems { get; set; } = new List<CartItem>();
+    /// Tracks the total amount of all items in the cart
     private decimal totalAmount = 0;
 
+    /// Initializes a new instance of the ShoppingCart page
     public ShoppingCart(int userID)
     {
         InitializeComponent();
@@ -13,12 +18,13 @@ public partial class ShoppingCart : ContentPage
         LoadCartItems();
     }
 
+    /// Loads and displays cart items belonging to the current user Updates total amount and checkout button state
     private void LoadCartItems()
     {
         CartItemsLayout.Children.Clear();
         totalAmount = 0;
 
-        // Only show items belonging to current user
+        // Filter items for current user
         var userItems = CartItems.Where(item => item.UserID == currentUserID).ToList();
 
         foreach (var item in userItems)
@@ -32,6 +38,7 @@ public partial class ShoppingCart : ContentPage
         CheckoutButton.IsEnabled = userItems.Any();
     }
 
+    /// Creates a visual frame for displaying a cart item
     private Frame CreateCartItemFrame(CartItem item)
     {
         var frame = new Frame
@@ -90,17 +97,20 @@ public partial class ShoppingCart : ContentPage
         return frame;
     }
 
+    /// Removes an item from the cart and refreshes the display
     private void RemoveItem(CartItem item)
     {
         CartItems.Remove(item);
         LoadCartItems();
     }
 
+    /// Updates the total amount display
     private void UpdateTotal()
     {
         TotalLabel.Text = $"Total: €{totalAmount:F2}";
     }
 
+    /// Handles the checkout process when checkout button is clicked, Displays purchase summary and clears cart
     private async void OnCheckoutClicked(object sender, EventArgs e)
     {
         var userItems = CartItems.Where(item => item.UserID == currentUserID).ToList();
@@ -122,12 +132,13 @@ public partial class ShoppingCart : ContentPage
             CartItems.Remove(item);
         }
 
-        // Navigate back to previous page instead of root
         await Navigation.PopAsync();
     }
 
+    /// Flag to prevent multiple logout attempts simultaneously
     private bool isLoggingOut = false;
 
+    /// Handles the logout process when logout button is clicked, Clears cart and returns to login page
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
         if (isLoggingOut) return;

@@ -1,19 +1,27 @@
 namespace GardenCentreApp;
 
+/// Page that displays and manages garden care products available for purchase
 public partial class GardenCareProducts : ContentPage
 {
+
+    /// Dictionary storing product information: product name as key, quantity and price as value tuple
     private Dictionary<string, (int Quantity, decimal Price)> products;
+    /// Flag to prevent multiple cart pages from being opened at the same time
     private bool isCartOpening = false;
+
+    /// Stores the ID of the currently logged-in user
     private int currentUserID;
 
+    /// Initializes a new instance of the GardenCareProducts page
     public GardenCareProducts(int userID)
     {
         InitializeComponent();
         currentUserID = userID;
-        products = new Dictionary<string, (int, decimal)>(); // Initialize empty dictionary
+        products = new Dictionary<string, (int, decimal)>();
         InitializeProducts();
     }
 
+    /// Initializes the product catalog with default prices
     private void InitializeProducts()
     {
         products = new Dictionary<string, (int, decimal)>
@@ -24,6 +32,7 @@ public partial class GardenCareProducts : ContentPage
         };
     }
 
+    /// Handles the increment button click event to increase product quantity
     private void OnIncrementClicked(object? sender, EventArgs e)
     {
         if (sender is Button button)
@@ -42,6 +51,7 @@ public partial class GardenCareProducts : ContentPage
         }
     }
 
+    /// Handles the decrement button click event to decrease product quantity
     private void OnDecrementClicked(object? sender, EventArgs e)
     {
         if (sender is Button button)
@@ -63,6 +73,7 @@ public partial class GardenCareProducts : ContentPage
         }
     }
 
+    /// Handles different display formats for single items vs multiple items
     private void UpdateTotalPrice()
     {
         foreach (var product in products)
@@ -80,10 +91,6 @@ public partial class GardenCareProducts : ContentPage
                 {
                     priceLabel.Text = $"€{basePrice:F2} each";
                 }
-                else if (quantity == 1)
-                {
-                    priceLabel.Text = $"€{totalPrice:F2}";
-                }
                 else
                 {
                     priceLabel.Text = $"€{totalPrice:F2} total";
@@ -92,6 +99,7 @@ public partial class GardenCareProducts : ContentPage
         }
     }
 
+    /// Handles adding products to the shopping cart
     private async void OnAddToCartClicked(object? sender, EventArgs e)
     {
         try
@@ -113,7 +121,7 @@ public partial class GardenCareProducts : ContentPage
                                 ProductName = productName,
                                 Quantity = quantity,
                                 Price = price,
-                                UserID = currentUserID  // Add the UserID to track ownership
+                                UserID = currentUserID
                             });
 
                             await DisplayAlert("Added to Cart",
@@ -129,7 +137,7 @@ public partial class GardenCareProducts : ContentPage
         }
     }
 
-
+    /// Includes protection against multiple simultaneous navigation attempts
     private async void OnCartClicked(object? sender, EventArgs e)
     {
         if (isCartOpening) return;
