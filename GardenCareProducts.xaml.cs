@@ -4,10 +4,12 @@ public partial class GardenCareProducts : ContentPage
 {
     private Dictionary<string, (int Quantity, decimal Price)> products;
     private bool isCartOpening = false;
+    private int currentUserID;
 
-    public GardenCareProducts()
+    public GardenCareProducts(int userID)
     {
         InitializeComponent();
+        currentUserID = userID;
         products = new Dictionary<string, (int, decimal)>(); // Initialize empty dictionary
         InitializeProducts();
     }
@@ -110,7 +112,8 @@ public partial class GardenCareProducts : ContentPage
                             {
                                 ProductName = productName,
                                 Quantity = quantity,
-                                Price = price
+                                Price = price,
+                                UserID = currentUserID  // Add the UserID to track ownership
                             });
 
                             await DisplayAlert("Added to Cart",
@@ -134,7 +137,7 @@ public partial class GardenCareProducts : ContentPage
         isCartOpening = true;
         try
         {
-            await Navigation.PushAsync(new ShoppingCart());
+            await Navigation.PushAsync(new ShoppingCart(currentUserID));
         }
         finally
         {

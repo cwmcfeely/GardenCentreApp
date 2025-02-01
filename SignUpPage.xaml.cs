@@ -39,7 +39,7 @@ public partial class SignUpPage : ContentPage
             await DisplayAlert("Success", "Account created successfully!", "OK");
             await Navigation.PopAsync();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             await DisplayAlert("Error", "Failed to create account", "OK");
         }

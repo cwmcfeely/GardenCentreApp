@@ -4,10 +4,12 @@ public partial class ToolProducts : ContentPage
 {
     private Dictionary<string, (int Quantity, decimal Price)> products;
     private bool isCartOpening = false;
+    private int currentUserID;
 
-    public ToolProducts()
+    public ToolProducts(int userID)
     {
         InitializeComponent();
+        currentUserID = userID;
         products = new Dictionary<string, (int, decimal)>(); // Initialize empty dictionary
         InitializeProducts();
     }
@@ -112,7 +114,8 @@ public partial class ToolProducts : ContentPage
                             {
                                 ProductName = productName,
                                 Quantity = quantity,
-                                Price = price
+                                Price = price,
+                                UserID = currentUserID  // Add the UserID to track ownership
                             });
 
                             await DisplayAlert("Added to Cart",
@@ -128,6 +131,7 @@ public partial class ToolProducts : ContentPage
         }
     }
 
+
     private async void OnCartClicked(object? sender, EventArgs e)
     {
         if (isCartOpening) return;
@@ -135,7 +139,7 @@ public partial class ToolProducts : ContentPage
         isCartOpening = true;
         try
         {
-            await Navigation.PushAsync(new ShoppingCart());
+            await Navigation.PushAsync(new ShoppingCart(currentUserID));
         }
         finally
         {

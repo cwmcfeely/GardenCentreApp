@@ -2,12 +2,14 @@ namespace GardenCentreApp;
 
 public partial class ShoppingCart : ContentPage
 {
+    private readonly int currentUserID;
     public static List<CartItem> CartItems { get; set; } = new List<CartItem>();
     private decimal totalAmount = 0;
 
-    public ShoppingCart()
+    public ShoppingCart(int userID)
     {
         InitializeComponent();
+        currentUserID = userID;
         LoadCartItems();
     }
 
@@ -16,7 +18,10 @@ public partial class ShoppingCart : ContentPage
         CartItemsLayout.Children.Clear();
         totalAmount = 0;
 
-        foreach (var item in CartItems)
+        // Only show items belonging to current user
+        var userItems = CartItems.Where(item => item.UserID == currentUserID).ToList();
+
+        foreach (var item in userItems)
         {
             var frame = CreateCartItemFrame(item);
             CartItemsLayout.Children.Add(frame);
@@ -24,7 +29,7 @@ public partial class ShoppingCart : ContentPage
         }
 
         UpdateTotal();
-        CheckoutButton.IsEnabled = CartItems.Any();
+        CheckoutButton.IsEnabled = userItems.Any();
     }
 
     private Frame CreateCartItemFrame(CartItem item)
@@ -63,8 +68,7 @@ public partial class ShoppingCart : ContentPage
                 new Label
                 {
                     Text = $"€{item.Total:F2}",
-                    FontSize = 16,
-                    FontAttributes = FontAttributes.Bold
+                    FontSize = 16
                 }
             }
         };
@@ -97,10 +101,12 @@ public partial class ShoppingCart : ContentPage
         TotalLabel.Text = $"Total: €{totalAmount:F2}";
     }
 
-    private async void OnCheckoutClicked(object? sender, EventArgs e)
+    private async void OnCheckoutClicked(object sender, EventArgs e)
     {
+        var userItems = CartItems.Where(item => item.UserID == currentUserID).ToList();
+
         var summary = "Purchase Summary:\n\n";
-        foreach (var item in CartItems)
+        foreach (var item in userItems)
         {
             summary += $"{item.ProductName}\n";
             summary += $"Quantity: {item.Quantity}\n";
@@ -109,13 +115,19 @@ public partial class ShoppingCart : ContentPage
         summary += $"\nTotal Amount: €{totalAmount:F2}";
 
         await DisplayAlert("Checkout Complete", summary, "OK");
-        CartItems.Clear();
+
+        // Remove checked out items
+        foreach (var item in userItems.ToList())
+        {
+            CartItems.Remove(item);
+        }
+
         await Navigation.PopToRootAsync();
     }
 
     private bool isLoggingOut = false;
 
-    private async void OnLogoutClicked(object? sender, EventArgs e)
+    private async void OnLogoutClicked(object sender, EventArgs e)
     {
         if (isLoggingOut) return;
 
@@ -125,6 +137,7 @@ public partial class ShoppingCart : ContentPage
             bool answer = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
             if (answer)
             {
+                CartItems.Clear();
                 await Navigation.PopToRootAsync();
             }
         }

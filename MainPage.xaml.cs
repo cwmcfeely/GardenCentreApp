@@ -28,7 +28,7 @@ public partial class MainPage : ContentPage
 			//await DisplayAlert("Success", "Login successful!", "OK");
 			// Navigate to CategoriesPage with user's name
 			var userName = user.UserName ?? string.Empty;
-			await Navigation.PushAsync(new CategoriesPage(user.UserName));
+			await Navigation.PushAsync(new CategoriesPage(user.UserName, user.UserID));
 
 			// Clear entry fields after successful login
 			EmailEntry.Text = string.Empty;
