@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GardenCentreApp.CategoriesPage"
+             Title="Garden Shopping Categories"
+             BackgroundColor="#C8E6C9">
+
+    <Grid RowSpacing="20"
+          Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Welcome and Cart Section -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                x:Name="WelcomeLabel"
+                Text="Welcome Test, choose a shopping category"
+                FontSize="24"
+                TextColor="#047B4D"
+                Margin="10,20,0,20"/>
+
+            <ImageButton
+                Grid.Column="1"
+                x:Name="CartButton"
+                Source="cart.png"
+                HeightRequest="30"
+                WidthRequest="30"
+                Margin="0,20,10,20"
+                Clicked="OnCartClicked"/>
+        </Grid>
+
+        <!-- Categories -->
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="20">
+            <!-- Plants Category -->
+            <Frame BackgroundColor="White"
+                   Padding="15"
+                   CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="plants.png"
+                           HeightRequest="100"
+                           WidthRequest="100"
+                           Aspect="AspectFit"/>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         Padding="15,0,0,0">
+                        <Label Text="Plants"
+                               FontSize="24"
+                               TextColor="#047B4D"/>
+                        <Label Text="Browse our selection of indoor and outdoor plants"
+                               FontSize="14"/>
+                    </VerticalStackLayout>
+
+                    <BoxView Grid.ColumnSpan="2"
+                             BackgroundColor="Transparent"
+                             InputTransparent="False">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="PlantsCategory"
+                                                  Tapped="OnCategoryTapped"/>
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+                </Grid>
+            </Frame>
+
+            <!-- Tools Category -->
+            <Frame BackgroundColor="White"
+                   Padding="15"
+                   CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="tools.png"
+                           HeightRequest="100"
+                           WidthRequest="100"
+                           Aspect="AspectFit"/>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         Padding="15,0,0,0">
+                        <Label Text="Tools"
+                               FontSize="24"
+                               TextColor="#047B4D"/>
+                        <Label Text="Quality gardening tools and equipment"
+                               FontSize="14"/>
+                    </VerticalStackLayout>
+
+                    <BoxView Grid.ColumnSpan="2"
+                             BackgroundColor="Transparent"
+                             InputTransparent="False">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="ToolsCategory"
+                                                  Tapped="OnCategoryTapped"/>
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+                </Grid>
+            </Frame>
+
+            <!-- Garden Care Category -->
+            <Frame BackgroundColor="White"
+                   Padding="15"
+                   CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="gardencare.png"
+                           HeightRequest="100"
+                           WidthRequest="100"
+                           Aspect="AspectFit"/>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         Padding="15,0,0,0">
+                        <Label Text="Garden Care"
+                               FontSize="24"
+                               TextColor="#047B4D"/>
+                        <Label Text="Fertilisers, soil, and garden maintenance products"
+                               FontSize="14"/>
+                    </VerticalStackLayout>
+
+                    <BoxView Grid.ColumnSpan="2"
+                             BackgroundColor="Transparent"
+                             InputTransparent="False">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="GardenCareCategory"
+                                                  Tapped="OnCategoryTapped"/>
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+
+        <!-- Cart and Logout Section -->
+        <StackLayout Grid.Row="2"
+                     Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     Spacing="15">
+
+            <Button
+                Text="Logout"
+                x:Name="LogoutButton"
+                BackgroundColor="#047B4D"
+                TextColor="White"
+                WidthRequest="200"
+                HeightRequest="40"
+                Clicked="OnLogoutClicked"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

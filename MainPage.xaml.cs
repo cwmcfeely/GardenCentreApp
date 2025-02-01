@@ -26,7 +26,12 @@ public partial class MainPage : ContentPage
 		if (user != null)
 		{
 			await DisplayAlert("Success", "Login successful!", "OK");
-			// Add navigation to your shopping page here
+			// Navigate to CategoriesPage with user's name
+			await Navigation.PushAsync(new CategoriesPage(user.UserName));
+
+			// Clear entry fields after successful login
+			EmailEntry.Text = string.Empty;
+			PasswordEntry.Text = string.Empty;
 		}
 		else
 		{
