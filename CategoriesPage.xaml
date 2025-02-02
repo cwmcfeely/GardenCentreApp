@@ -8,6 +8,8 @@
 
     <Grid RowSpacing="20"
           Padding="20">
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -122,7 +124,7 @@
                         <Label Text="Garden Care"
                                FontSize="24"
                                TextColor="#047B4D"/>
-                        <Label Text="Fertilizers, soils, and weed killer"
+                        <Label Text="Fertilisers, soils, and weed killer"
                                FontSize="14"/>
                     </VerticalStackLayout>
                 </Grid>

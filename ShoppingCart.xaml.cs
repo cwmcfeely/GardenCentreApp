@@ -15,6 +15,15 @@ public partial class ShoppingCart : ContentPage
     {
         InitializeComponent();
         currentUserID = userID;
+        // Check if the user is a corporate customer and show/hide the button
+        Task.Run(async () =>
+        {
+            var user = await App.Database.GetUserByIdAsync(userID);
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                AccountDetailsButton.IsVisible = user.CustomerType == "Corporate";
+            });
+        });
         LoadCartItems();
     }
 
@@ -110,34 +119,77 @@ public partial class ShoppingCart : ContentPage
         TotalLabel.Text = $"Total: €{totalAmount:F2}";
     }
 
-    /// Handles the checkout process when checkout button is clicked, Displays purchase summary and clears cart
+    /// <summary>
+    /// Handles the checkout process when checkout button is clicked.
+    /// For regular customers: Displays purchase summary and clears cart
+    /// For corporate customers: Adds to monthly tab and shows running total
+    /// </summary>
     private async void OnCheckoutClicked(object sender, EventArgs e)
     {
-        var userItems = CartItems.Where(item => item.UserID == currentUserID).ToList();
-
-        var summary = "Purchase Summary:\n\n";
-        foreach (var item in userItems)
+        try
         {
-            summary += $"{item.ProductName}\n";
-            summary += $"Quantity: {item.Quantity}\n";
-            summary += $"Price: €{item.Total:F2}\n\n";
+            // Filter items for current user
+            var userItems = CartItems.Where(item => item.UserID == currentUserID).ToList();
+            var user = await App.Database.GetUserByIdAsync(currentUserID);
+
+            // Build basic purchase summary
+            var summary = "Purchase Summary:\n\n";
+            foreach (var item in userItems)
+            {
+                summary += $"{item.ProductName}\n";
+                summary += $"Quantity: {item.Quantity}\n";
+                summary += $"Price: €{item.Total:F2}\n\n";
+            }
+            summary += $"\nTotal Amount: €{totalAmount:F2}";
+
+            if (user.CustomerType == "Corporate")
+            {
+                // Save to corporate orders
+                var order = new CorporateOrder
+                {
+                    UserID = currentUserID,
+                    Amount = totalAmount,
+                    PurchaseDate = DateTime.Now,
+                    IsSettled = false
+                };
+                await App.Database.SaveCorporateOrderAsync(order);
+
+                // Get monthly total
+                var monthlyTotal = await App.Database.GetMonthlyTotalAsync(currentUserID);
+
+                // Calculate end of month date
+                var endOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month,
+                    DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+
+                // Add corporate-specific information
+                summary += "\n\nCorporate Account Summary:";
+                summary += $"\nMonthly Total: €{monthlyTotal:F2}";
+                summary += $"\nPayment Due: {endOfMonth:d}";
+
+                await DisplayAlert("Added to Corporate Account", summary, "OK");
+            }
+            else
+            {
+                // Regular customer checkout
+                await DisplayAlert("Checkout Complete", summary, "OK");
+            }
+
+            // Remove checked out items
+            foreach (var item in userItems.ToList())
+            {
+                CartItems.Remove(item);
+            }
+
+            await Navigation.PopAsync();
         }
-        summary += $"\nTotal Amount: €{totalAmount:F2}";
-
-        await DisplayAlert("Checkout Complete", summary, "OK");
-
-        // Remove checked out items
-        foreach (var item in userItems.ToList())
+        catch (Exception)
         {
-            CartItems.Remove(item);
+            await DisplayAlert("Error", "Failed to process checkout", "OK");
         }
-
-        await Navigation.PopAsync();
     }
 
     /// Flag to prevent multiple logout attempts simultaneously
     private bool isLoggingOut = false;
-
     /// Handles the logout process when logout button is clicked, Clears cart and returns to login page
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
@@ -158,4 +210,39 @@ public partial class ShoppingCart : ContentPage
             isLoggingOut = false;
         }
     }
+
+    /// Displays corporate account information including monthly totals and payment due dates.
+    private async void OnAccountDetailsClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            // Retrieve the current user
+            var user = await App.Database.GetUserByIdAsync(currentUserID);
+
+            // Check if the user is a corporate customer
+            if (user.CustomerType == "Corporate")
+            {
+                // Get the monthly total for corporate purchases
+                var monthlyTotal = await App.Database.GetMonthlyTotalAsync(currentUserID);
+
+                // Calculate the end-of-month payment date
+                var endOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month,
+                    DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+
+                // Build account details summary
+                var details = "Corporate Account Details:\n\n";
+                details += $"Monthly Total: €{monthlyTotal:F2}\n";
+                details += $"Payment Due: {endOfMonth:d}";
+
+                // Show the account details in an alert
+                await DisplayAlert("Account Details", details, "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Failed to load account details: {ex.Message}", "OK");
+        }
+    }
+
+
 }

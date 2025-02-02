@@ -7,6 +7,7 @@
 
     <Grid RowSpacing="20"
           Padding="20">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

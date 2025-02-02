@@ -35,7 +35,7 @@ public partial class MainPage : ContentPage
 		{
 			// On successful login, navigate to categories page with user info
 			var userName = user.UserName ?? string.Empty;
-			await Navigation.PushAsync(new CategoriesPage(user.UserName, user.UserID));
+			await Navigation.PushAsync(new CategoriesPage(userName: user?.UserName ?? string.Empty, userID: user?.UserID ?? 0));
 
 			// Clear login fields for security
 			EmailEntry.Text = string.Empty;
