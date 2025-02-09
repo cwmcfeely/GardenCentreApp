@@ -23,15 +23,13 @@ The GardenCentreApp is a cross-platform mobile application built with .NET MAUI,
 
 ---
 
-### **Screenshots**
-Login Page
-![Login Page](assets/Login.png)
-SignUp Page
-![SignUp Page] (assets/SignUp.png)
-Categories Page
-![Categories] (assets/Categories.png)
-Plants
-![Plants] (assets/Plants.png)
+### Screenshots
+
+![Login Page](./assets/Login.png)
+![SignUp Page](./assets/SignUp.png)
+![Categories](./assets/Categories.png)
+![Plants](./assets/Plants.png)
+
 ---
 
 ### **📋 Tech Stack**
@@ -75,12 +73,13 @@ Ensure you have the following installed:
 - **.NET MAUI Workload:** Install .NET MAUI using the following command:
    ```bash
    dotnet workload install maui
-Verify that .NET MAUI is installed by running:
+3, **Verify that .NET MAUI is installed by running:**
   ```bash
   dotnet --list-sdks
   ```
 4. **Build and Run the App**
 Choose your target platform and run the following commands:
+
 Mac Catalyst
   ```bash
   dotnet build -t:Run -f net8.0-maccatalyst
