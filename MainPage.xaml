@@ -47,6 +47,7 @@
                     Keyboard="Email"
                     x:Name="EmailEntry"
                     BackgroundColor="White"
+                    TextColor="Black"
                     WidthRequest="300"
                     HorizontalOptions="Center"/>
 
@@ -55,6 +56,7 @@
                     Placeholder="Telephone/Mobile Numer"
                     IsPassword="True"
                     x:Name="PasswordEntry"
+                    TextColor="Black"
                     BackgroundColor="White"
                     WidthRequest="300"
                     HorizontalOptions="Center"/>
