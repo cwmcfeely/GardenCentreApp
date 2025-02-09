@@ -119,11 +119,9 @@ public partial class ShoppingCart : ContentPage
         TotalLabel.Text = $"Total: €{totalAmount:F2}";
     }
 
-    /// <summary>
     /// Handles the checkout process when checkout button is clicked.
     /// For regular customers: Displays purchase summary and clears cart
-    /// For corporate customers: Adds to monthly tab and shows running total
-    /// </summary>
+    /// For corporate customers: Adds to monthly tab and shows running tota
     private async void OnCheckoutClicked(object sender, EventArgs e)
     {
         try
@@ -174,19 +172,21 @@ public partial class ShoppingCart : ContentPage
                 await DisplayAlert("Checkout Complete", summary, "OK");
             }
 
-            // Remove checked out items
+            // Remove checked out items from cart
             foreach (var item in userItems.ToList())
             {
                 CartItems.Remove(item);
             }
 
-            await Navigation.PopAsync();
+            // Refresh cart display after checkout
+            LoadCartItems();
         }
         catch (Exception)
         {
             await DisplayAlert("Error", "Failed to process checkout", "OK");
         }
     }
+
 
     /// Flag to prevent multiple logout attempts simultaneously
     private bool isLoggingOut = false;
