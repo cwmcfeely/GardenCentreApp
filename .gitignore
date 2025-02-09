@@ -1,0 +1,11 @@
+# Build Folders
+bin/
+obj/
+
+# Platform-Specific Build Artifacts
+Platforms/Android/bin/
+Platforms/Android/obj/
+Platforms/iOS/bin/
+Platforms/iOS/obj/
+Platforms/MacCatalyst/bin/
+Platforms/MacCatalyst/obj/
