@@ -25,10 +25,10 @@ The GardenCentreApp is a cross-platform mobile application built with .NET MAUI,
 
 ### Screenshots
 
-![Login Page](./assets/Login.png)
-![SignUp Page](./assets/SignUp.png)
-![Categories](./assets/Categories.png)
-![Plants](./assets/Plants.png)
+![Login Page](./assets/Login.jpg)
+![SignUp Page](./assets/SignUp.jpg)
+![Categories](./assets/Categories.jpg)
+![Plants](./assets/Plants.jpg)
 
 ---
 
