@@ -81,6 +81,7 @@ Verify that .NET MAUI is installed by running:
   ```
 4. **Build and Run the App**
 Choose your target platform and run the following commands:
+
 Mac Catalyst
   ```bash
   dotnet build -t:Run -f net8.0-maccatalyst
