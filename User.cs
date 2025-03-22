@@ -13,5 +13,5 @@ public class User
     /// Used for account verification and communication
     public string PhoneNumber { get; set; } = string.Empty;
     /// Indicates whether the user is a corporate or general customer
-    public string CustomerType { get; set; }
+    public string CustomerType { get; set; } = string.Empty;
 }

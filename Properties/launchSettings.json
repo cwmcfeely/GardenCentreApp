@@ -4,6 +4,10 @@
       "commandName": "Project",
       "nativeDebugging": false
     },
+    "Windows": {
+      "commandName": "Project",
+      "executablePath": "$(TargetDir)\\GardenCenterCA1.exe"
+    },
     "Android": {
       "commandName": "Project",
       "framework": "net8.0-android"

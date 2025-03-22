@@ -4,7 +4,7 @@
 public partial class App : Application
 {
 	// Static instance of the database to ensure single database connection
-	static UserDatabase database;
+	static UserDatabase? database;
 
 	/// Public property that provides access to the user database
 	/// database is only created when first accessed
